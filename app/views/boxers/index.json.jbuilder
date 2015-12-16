@@ -1,0 +1,1 @@
+json.array! @boxers, partial: 'boxer', as: :boxer
