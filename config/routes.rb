@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   # get '/', to: 'boxers#index'
   resources :boxers
+  namespace :api do 
+    namespace :v1 do
+      resources :boxers
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
