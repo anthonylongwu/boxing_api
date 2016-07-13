@@ -5,7 +5,7 @@ class BoxersController < ApplicationController
   end
 
   def show
-    @boxer = Boxer.find(params[:id])
+    @boxer = Boxer.find(1)
   end
 
   def create
@@ -16,8 +16,8 @@ class BoxersController < ApplicationController
    def destroy
     Employee.find(params[:id]).destroy
     respond_to do |format|
-      format.html { redirect_to "/employees"}
-      format.json {render json: "Employee Deleted" }
+      format.html { redirect_to "/boxers"}
+      format.json {render json: "Boxer Deleted" }
   end
 
   def edit
@@ -27,4 +27,8 @@ class BoxersController < ApplicationController
     @boxer = Boxer.find(params[:id])
     @boxer.update(first_name: params[:first_name], last_name: params[:last_name], weight_class: params[:weight_class],current_record: params[:current_record], titles_held: params[:titles_held], home_town: params[:home_town])
   end
+
+  def search
+    @boxers = Boxer.where("name like ?", "%#{params[:name]}")
+end
 end

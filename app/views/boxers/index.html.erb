@@ -1,0 +1,47 @@
+<div ng-app="app">
+  <div ng-controller="boxersCtrl" ng-init="setup()">
+  <div>
+    Add Boxer:
+    <ul>
+      <li class="error-messages" ng-repeat="errorMessage in errorMessages">{{errorMessage}}</li>
+    </ul>
+    <div>
+      First Name: <input ng-model="newFirstname">
+    </div>
+    <div>
+      Last Name: <input ng-model="newLastname"></textarea>
+    </div>
+    <button ng-click="addBoxer(newFirstname, newLastname)">Add Boxer</button>
+    </div>
+
+    <datalist id="names">
+    <option ng-repeat="boxer in boxers">{{boxer.name}}</option>
+    </datalist>
+
+
+
+
+    <input ng-model="filter" list="names">
+    <table>
+    <tr>
+      <th ng-click="toggleOrder('first_name')">First Name</th>
+      <th ng-click="toggleOrder('last_name')">Last Name</th>
+      <th>Delete</th>
+    </tr>
+    <tr ng-repeat="boxer in boxers | filter: filter | orderBy:orderAttribute:direction">
+      <td>{{boxer.first_name}}</td>
+      <td>{{boxer.last_name}}</td>
+    </tr>
+    </table>
+    <!-- <button ng-click="toggleOrder('first_name')">Sort by First Name</button>
+    <button ng-click="toggleOrder('last_name')">Sort by Last Name</button>
+     <div ng-repeat="boxer in boxers | filter: filter | orderBy:orderAttribute:direction">
+       <p ng-click="toggleVisibility(boxer)"> {{boxer.first_name}}</p>
+       <div ng-if="boxer.bioVisible">
+         <p>{{boxer.last_name }}</p>
+         <a href="#" ng-click="deleteBoxer(boxer)">Delete</a>
+       </div>
+     </div> -->
+
+  </div>
+</div>
